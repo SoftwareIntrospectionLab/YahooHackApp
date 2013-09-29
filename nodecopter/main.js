@@ -12,11 +12,10 @@ var maxInches = 20;
 console.log("1");
 board = new five.Board();
 console.log("2");
+
 board.on("ready", function() {
 
     console.log("yay! go nodedrone!");
-
-//    (new five.Led(13)).strobe();
 
     ping = new five.Ping(6);
 
@@ -29,24 +28,22 @@ board.on("ready", function() {
 	console.log( typeof this.inches );
 	dist = this.inches;
 	if(dist > maxInches){
-	dist = 9;
+	    dist = maxInches;
 	}
-        dist = dist * 1000;
+        distSeconds = dist * 1000;
 	console.log( "Object is " + this.inches + "inches away" );
-	
 	client.takeoff();
-
 	client.up(.2);
-
-	client
-	    .after(3000, function() {
-		console.log("5");
-		this.stop();
-		this.land();
- });
-
+	client.after(distSeconds, stopLandCopter);
     });
 });
+
+
+function stopLandCopter(){
+    console.log("5");
+    this.stop();
+    this.land();
+}
 
 
 /*
@@ -75,5 +72,5 @@ process.on("SIGINT", function() {
     console.log("landing drone");
     console.log("6");
     console.log( "Object is " + this.inches + "inches away" ); 
-   // client.land();
+    client.land();
 });
