@@ -1,13 +1,18 @@
 
+require('johnny-five')
+require('ar-drone')
 
 var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 
-var pngStream = client.getPngStream();
+//var pngStream = client.getPngStream();
 
-pngStream.on('data', console.log);
+client
+   .after(40000, function() {
+   console.log("in function");
+ });
 
-
+//pngStream.on('data', console.log);
 /*
 client.takeoff();
 

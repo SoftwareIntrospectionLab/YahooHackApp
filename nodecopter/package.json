@@ -1,0 +1,17 @@
+{
+  "name": "nodecopter",
+  "version": "1.0.0",
+  "description": "accessible drone flying app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+ "dependencies" : {
+    "johnny-five"   :  "*",
+    "ar-drone" :  "*"
+  },
+
+  "author": "Brandy and Tharun",
+  "license": "BSD-2-Clause"
+}
