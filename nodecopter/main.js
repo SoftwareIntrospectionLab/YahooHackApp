@@ -7,7 +7,7 @@ var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 var five = require("johnny-five"),
     board, ping;
-
+var maxInches = 20;
 
 console.log("1");
 board = new five.Board();
@@ -16,7 +16,7 @@ board.on("ready", function() {
 
     console.log("yay! go nodedrone!");
 
-    (new five.Led(13)).strobe();
+//    (new five.Led(13)).strobe();
 
     ping = new five.Ping(6);
 
@@ -28,7 +28,7 @@ board.on("ready", function() {
     ping.on("change", function( err, value ) {
 	console.log( typeof this.inches );
 	dist = this.inches;
-	if(dist > 10){
+	if(dist > maxInches){
 	dist = 9;
 	}
         dist = dist * 1000;
