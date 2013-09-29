@@ -34,7 +34,7 @@ function getDistAndFly(){
     dist = this.inches;
     diff = Math.abs(dist - lastDist)
     //diff = dist - lastDist
-    if(diff > 2 && dist > 1){ // diff from last input must be greater than &&  input must be farter than
+    if(diff > 1.5 && dist > 1){ // diff from last input must be greater than &&  input must be farter than
 	if(dist > maxInches){
 	    dist = maxInches;
 	}
