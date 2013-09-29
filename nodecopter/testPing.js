@@ -8,7 +8,7 @@ console.log("got here");
 board.on("ready", function() {
 
   // Create a new `ping` hardware instance.
-  ping = new five.Ping(7);
+  ping = new five.Ping(6);
 
   // Properties
 
