@@ -31,13 +31,8 @@ board.on("ready", function() {
 function getDistAndFly(){
     console.log( typeof this.inches );
 
-    dist = 0; // debugging
-    diff = 0; // debugging
-
     dist = this.inches;
-
     diff = Math.abs(dist - lastDist)
-
     //diff = dist - lastDist
     if(diff > 2 && dist > 1){ // diff from last input must be greater than &&  input must be farter than
 	if(dist > maxInches){
@@ -63,6 +58,8 @@ function stopLandCopter(){
     console.log("landing drone.");
     this.stop();
     this.land();
+    // reset it's data so it doesn't add it
+
     diff = 0;
     dist = 0;
     lastDist = 0;
