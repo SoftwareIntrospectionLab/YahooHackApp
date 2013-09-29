@@ -28,6 +28,9 @@ board.on("ready", function() {
     ping.on("change", function( err, value ) {
 	console.log( typeof this.inches );
 	dist = this.inches;
+	if(dist > 10){
+	dist = 9;
+	}
         dist = dist * 1000;
 	console.log( "Object is " + this.inches + "inches away" );
 	
