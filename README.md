@@ -2,7 +2,7 @@ YahooHackApp
 ======================
 
 Description:
-App to empower users to choose the content they see in the movies they watch
+Accessible app for anyone to make a helicopter fly based on sensory imput
 
 To Run:
 npm install
