@@ -2,7 +2,9 @@ YahooHackApp
 ======================
 
 Description:
-Accessible app for anyone to make a helicopter fly based on sensory imput
+
+Accessibility hardware hack that allows anyone to fly a quadricopter using hand gestures. The height of the flight depends on the distance you are from the sensor. We use node.js johnny-five module to communicate with Arudrino Uno and receive info from Parallax ultra sonic sensor. ar-drone node.js module is used to communicate with Parrot drone
+
 
 To Run:
 npm install
