@@ -1,15 +1,16 @@
 require('johnny-five')
 require('ar-drone')
 
-var dist = 0;
+
 var lastDist = 0;
 var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 var five = require("johnny-five"),
     board, ping;
-var maxInches = 10;
-var notReady = false;
+var maxInches = 15;
 
+var dist = 0;
+var diff = 0;
 
 board = new five.Board();
 
@@ -29,9 +30,14 @@ board.on("ready", function() {
 
 function getDistAndFly(){
     console.log( typeof this.inches );
+
+    dist = 0; // debugging
+    diff = 0; // debugging
+
     dist = this.inches;
 
     diff = Math.abs(dist - lastDist)
+
     //diff = dist - lastDist
     if(diff > 2 && dist > 1){ // diff from last input must be greater than &&  input must be farter than
 	if(dist > maxInches){
@@ -39,8 +45,8 @@ function getDistAndFly(){
 	}
 	
 	if(lastDist > dist){
-
-	    var distMiliSeconds = dist * 1000;
+	    var distMiliSeconds = 0; // debugging
+	    distMiliSeconds = dist * 1000;
 	    console.log( "dist=" + this.inches + ", distMiliSeconds=" + distMiliSeconds);
 	    client.takeoff();
 	    client.up(.2);
@@ -54,16 +60,18 @@ function getDistAndFly(){
 
 
 function stopLandCopter(){
-    console.log("5");
+    console.log("landing drone.");
     this.stop();
     this.land();
+    diff = 0;
+    dist = 0;
+    lastDist = 0;
 }
 
 
 // only if we kill the script, this is an auto-emergency brake
 process.on("SIGINT", function() {
     console.log("landing drone");
-    console.log("6");
     console.log( "Object is " + this.inches + "inches away" ); 
     client.land();
 });
