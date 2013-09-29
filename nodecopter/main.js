@@ -5,22 +5,35 @@ require('ar-drone')
 var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 var five = require("johnny-five"),
-     board = new five.Board();
+    board, ping;
+
+board = new five.Board();
 
 board.on("ready", function() {
 
-   (new five.Led(13)).strobe();
+    console.log("yay! go nodedrone!");
+
+    (new five.Led(13)).strobe();
+
+    ping = new five.Ping(6);
+
+    ping.on("data", function( err, value ) {
+	console.log( "data", value );
+    });
+
+    ping.on("change", function( err, value ) {
+	console.log( typeof this.inches );
+	console.log( "Object is " + this.inches + "inches away" );
+    });
 });
 
 
-//var pngStream = client.getPngStream();
-
 client
-   .after(40000, function() {
+   .after(4000, function() {
    console.log("in function");
  });
 
-//pngStream.on('data', console.log);
+
 /*
 client.takeoff();
 
@@ -48,7 +61,10 @@ client
   });
 
 */
+
+// only if we kill the script, this is an auto-emergency brake
 process.on("SIGINT", function() {
     console.log("landing drone");
+    console.log( "Object is " + this.inches + "inches away" ); 
    // client.land();
 });
