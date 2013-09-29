@@ -7,7 +7,7 @@ var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 var five = require("johnny-five"),
     board, ping;
-var maxInches = 20;
+var maxInches = 10;
 var notReady = false;
 
 
