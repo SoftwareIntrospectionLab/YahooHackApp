@@ -45,7 +45,11 @@ function getDistAndFly(){
 	    console.log( "dist=" + this.inches + ", distMiliSeconds=" + distMiliSeconds);
 	    client.takeoff();
 	    client.up(.2);
-	    client.after(distMiliSeconds, stopLandCopter); // disSeconds is passed through as miliseconds; 1000 / second
+	    //client.after(distMiliSeconds, stopLandCopter); // disSeconds is passed through as miliseconds; 1000 / second
+
+	    setTimeout(stopLandCopter.bind(client), distMiliSeconds); // disSeconds is passed through as miliseconds; 1000 / second
+	    // .bind returns a function, so that all things that say this point to client
+
 	} else {
 	    console.log("Move at least 2 inches closer. dist=" + dist); // todo, change 2 to a constant var
 	}
